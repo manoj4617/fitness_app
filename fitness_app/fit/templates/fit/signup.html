@@ -12,6 +12,11 @@
 {% endblock main %}
 
 {% block content %}
+{% if message %}
+  <div class="message">
+    {{ message }}
+  </div>
+{% endif %}
      <form action="{% url 'fit:signup_post' %}" method="post" enctype="multipart/form-data" class="frm">
             {% csrf_token %}
                 <h2>SIGNUP</h2>

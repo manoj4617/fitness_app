@@ -36,13 +36,18 @@ def Signup(request):
         height = dic['height']
         userdata = User.objects.filter(username=u)
         if userdata:
-            messages.error(request, 'User Already Exists')
-            return render(request,'fit/login.html')
+            context = {
+                "message":"User already exists"
+            }
+            return render(request,'fit/login.html', context)
         else:
             user = User.objects.create_user(first_name=f, last_name=l, username=u, password=p, email=email)
             User_details.objects.create(user=user, mobile_no=mob, profile_image=img, age=age, gender=gender,
                                         weight=weight, heigth=height)
-            return render(request,'fit/login.html')
+            context = {
+                "message":"Account created! Login"
+            }
+            return render(request,'fit/login.html', context)
     return render(request, 'fit/signup.html')
 
 def Login(request):

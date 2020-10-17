@@ -260,3 +260,14 @@ input[type=text],input[type=number]{
      background-color: crimson;
      cursor: pointer;
  }
+.message{
+    margin: 5% auto;
+    height: fit-content;
+    padding: 15px;
+    width: 20%;
+    border: darkgray 2px solid;
+    border-radius: 3px;
+    color: darkorange;
+    font-size: 22px;
+    font-family: sans-serif;
+}
