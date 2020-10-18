@@ -12,6 +12,50 @@
 {% block content %}
     {% if user.is_authenticated %}
         <h1>Welcome {{ user.username }}</h1>
-        
+        <div class="tasks">
+            <div class="tasks">
+             <h3>Your Goals</h3>
+                {% if goals %}
+                <table>
+                    <tr>
+                        <th>Goal</th>
+                        <th>Start</th>
+                        <th>To be completed by</th>
+                        <th>Completed?</th>
+                    </tr>
+                    {% for g  in goals %}
+                        <tr>
+                            <td>{{g.task_name}}</td>
+                            <td>{{g.Task_date}}</td>
+                            <td>{{g.Due_date}}</td>
+                            <td><input type="checkbox" name="completed" id="completed"></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                {% else %}
+                    <p>You have no goals set for youself</p>
+                {% endif %}
+            </div>
+            <div class="set-goal">
+                <form action="{% url 'fit:add_task' %}" method="post" class="task-frm">
+                    {% csrf_token %}
+                    <div class="frm-text">
+                        <p>Goal Name</p>
+                        <input type="text" name="goal"  placeholder="Your Goal....">
+                    </div>
+                    <div class="frm-text">
+                        <p>You will start on...</p>
+                        <input type="date" name="start-date">
+                    </div>
+                    <div class="frm-text">
+                        <p>You will finish on...</p>
+                        <input type="date" name="end-date">
+                    </div>
+                    <div class="frm-text">
+                        <input type="submit" value="ADD">
+                    </div>
+                </form>
+            </div>
+        </div>
     {% endif %}
 {% endblock content %}

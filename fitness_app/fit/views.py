@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.contrib.auth import authenticate, login , logout
+from django.contrib.auth import authenticate, login , logout 
 from django.shortcuts import render, redirect
 from .models import *
 from django.contrib.auth.models import User
@@ -59,7 +59,12 @@ def Login(request):
         if user:
             login(request, user)
             #return redirect('home')
-            return render(request,'fit/main_page.html')
+            userLoggedIn = Goals.objects.filter(user=request.user)
+            context = {
+                "goals" : userLoggedIn
+            }
+            print(userLoggedIn)
+            return render(request,'fit/main_page.html', context)
         else:
             messages.error(request, 'User not found')
             context = {
@@ -68,3 +73,21 @@ def Login(request):
             return render(request,'fit/login.html',context)
 
     return render(request, 'fit/login.html')
+
+#def account(request,id):
+   #uid = int(id)
+    
+def add_task(request):
+    if request.method == "POST":
+        dec = request.POST
+        task = dec['goal']
+        fromDate = dec['start-date']
+        endDate = dec['end-date']
+        goal = Goals.objects.create(user=request.user,Task_date=fromDate,Due_date=endDate,task_name = task)
+        goal.save()
+        userLoggedIn = Goals.objects.filter(user=request.user)
+        context = {
+            "goals" : userLoggedIn
+        }
+        print(userLoggedIn)
+        return render(request,'fit/main_page.html', context)

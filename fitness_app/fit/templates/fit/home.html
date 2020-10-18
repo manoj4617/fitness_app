@@ -44,6 +44,9 @@
                     {% block logout %}
                         <li><a href="{% url 'fit:logout' %}">LOGOUT</a></li>
                     {% endblock logout %}  
+                    {% block account %}
+                        <li><a href="#">ACCOUNT</a></li>
+                    {% endblock account %}
                 {% endif %}      
                 
                 </ul>

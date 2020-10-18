@@ -26,6 +26,10 @@ class Goals(models.Model):
     def __str__(self):
         return self.task_name
 
+class TaskCompleted(models.Model):
+   user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+   task_name = models.ForeignKey(Goals, on_delete=models.CASCADE)
+   points = models.IntegerField(null=True)
 
 class Food_details(models.Model):
     user = models.ForeignKey(User_details, on_delete=models.CASCADE, null=True)
