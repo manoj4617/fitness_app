@@ -279,6 +279,7 @@ table {
   }
   
   td, th {
+    border-radius: 4px;
     border: 1px solid #dddddd;
     color: honeydew;
     font-size: 20px;
@@ -324,5 +325,5 @@ table {
   }
   h1{
       color: gainsboro;
-      
+
   }

@@ -61,7 +61,7 @@ def Login(request):
             login(request, user)
             #return redirect('home')
             userLoggedIn = Goals.objects.filter(user=request.user)
-            print(userLoggedIn)
+            #print(userLoggedIn)
            
             context = {
                 "goals" : userLoggedIn
@@ -94,3 +94,6 @@ def add_task(request):
         }
         print(userLoggedIn)
         return render(request,'fit/main_page.html', context)
+
+def Diet(request):
+    return render(request,"fit/diet.html")

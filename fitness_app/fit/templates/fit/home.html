@@ -47,6 +47,9 @@
                     {% block account %}
                         <li><a href="#">ACCOUNT</a></li>
                     {% endblock account %}
+                    {% block cal %}
+                        <li><a href="{% url 'fit:add_diet' %}">MAKE YOUR DIET PLAN</a></li>
+                    {% endblock cal %}
                 {% endif %}      
                 
                 </ul>
