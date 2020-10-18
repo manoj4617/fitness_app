@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login , logout
 from django.shortcuts import render, redirect
 from .models import *
 from django.contrib.auth.models import User
+from datetime import *
 
 
 
@@ -60,10 +61,12 @@ def Login(request):
             login(request, user)
             #return redirect('home')
             userLoggedIn = Goals.objects.filter(user=request.user)
+            print(userLoggedIn)
+           
             context = {
                 "goals" : userLoggedIn
             }
-            print(userLoggedIn)
+            #print(userLoggedIn)
             return render(request,'fit/main_page.html', context)
         else:
             messages.error(request, 'User not found')
